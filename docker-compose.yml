@@ -1,0 +1,18 @@
+version: '3.8'
+services:
+  app:
+    image: keygen-app
+    build: .
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=production
+    volumes:
+      - .:/app
+    depends_on:
+      - db
+
+  db:
+    image: sqlite3
+    volumes:
+      - ./licenses.db:/app/licenses.db
